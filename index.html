@@ -1,629 +1,600 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Грамотей-квиз · День грамотности</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Грамотей-квиз · День грамотности</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(145deg, #f7f0fc 0%, #e9def0 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f7f0fc 0%, #e9def0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
 
-    .app {
-      width: 100%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 48px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.05);
-      padding: 24px 20px 32px;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
+        .app {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.05);
+            padding: 24px 20px 32px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
 
-    h1, h2, h3 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
 
-    .start-screen, .quiz-screen, .result-screen {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+        .start-screen, .quiz-screen, .result-screen {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
 
-    .hidden {
-      display: none !important;
-    }
+        .hidden {
+            display: none !important;
+        }
 
-    /* СТАРТ */
-    .start-screen {
-      align-items: center;
-      text-align: center;
-      padding: 12px 0 8px;
-    }
+        /* СТАРТ */
+        .start-screen {
+            align-items: center;
+            text-align: center;
+            padding: 12px 0 8px;
+        }
 
-    .start-icon {
-      font-size: 4.2rem;
-      background: #ffffffcc;
-      padding: 20px 28px;
-      border-radius: 100px;
-      box-shadow: 0 8px 20px rgba(98, 50, 130, 0.15);
-      margin-bottom: 8px;
-      display: inline-block;
-    }
+        .start-icon {
+            font-size: 4.2rem;
+            background: #ffffffcc;
+            padding: 20px 28px;
+            border-radius: 100px;
+            box-shadow: 0 8px 20px rgba(98, 50, 130, 0.15);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
 
-    .start-screen h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #3b1f4b, #7d3c98);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-    }
+        .start-screen h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #3b1f4b, #7d3c98);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
 
-    .start-screen p {
-      font-size: 1.1rem;
-      color: #2d1b38;
-      opacity: 0.8;
-      max-width: 280px;
-      margin: 0 auto;
-      background: #f1e6fa;
-      padding: 10px 18px;
-      border-radius: 60px;
-    }
+        .start-screen p {
+            font-size: 1.1rem;
+            color: #2d1b38;
+            opacity: 0.8;
+            max-width: 280px;
+            margin: 0 auto;
+            background: #f1e6fa;
+            padding: 10px 18px;
+            border-radius: 60px;
+        }
 
-    .start-btn {
-      background: #6d2e8a;
-      border: none;
-      color: white;
-      font-size: 1.4rem;
-      font-weight: 600;
-      padding: 18px 20px;
-      width: 100%;
-      border-radius: 60px;
-      box-shadow: 0 12px 24px rgba(109, 46, 138, 0.3);
-      transition: 0.2s;
-      margin-top: 12px;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-    }
+        .start-btn {
+            background: #6d2e8a;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 18px 20px;
+            width: 100%;
+            border-radius: 60px;
+            box-shadow: 0 12px 24px rgba(109, 46, 138, 0.3);
+            transition: 0.2s;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
 
-    .start-btn:active {
-      transform: scale(0.96);
-      box-shadow: 0 4px 12px rgba(109, 46, 138, 0.4);
-    }
+        .start-btn:active {
+            transform: scale(0.96);
+        }
 
-    /* КВИЗ */
-    .quiz-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #ffffffb0;
-      padding: 12px 18px;
-      border-radius: 60px;
-      backdrop-filter: blur(4px);
-      margin-bottom: 8px;
-    }
+        /* КВИЗ */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffffb0;
+            padding: 12px 18px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 8px;
+        }
 
-    .quiz-header span {
-      font-weight: 600;
-      color: #2d1b38;
-    }
+        .quiz-header span {
+            font-weight: 600;
+            color: #2d1b38;
+        }
 
-    .score-badge {
-      background: #6d2e8a;
-      color: white;
-      padding: 4px 16px;
-      border-radius: 40px;
-      font-size: 0.9rem;
-    }
+        .score-badge {
+            background: #6d2e8a;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
 
-    .question-text {
-      background: #ffffffcc;
-      padding: 22px 18px;
-      border-radius: 32px;
-      font-size: 1.3rem;
-      font-weight: 500;
-      line-height: 1.4;
-      color: #1f1128;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      border: 1px solid #ffffff;
-      text-align: center;
-    }
+        .question-text {
+            background: #ffffffcc;
+            padding: 22px 18px;
+            border-radius: 32px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #1f1128;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #ffffff;
+            text-align: center;
+        }
 
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 6px 0 4px;
-    }
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 6px 0 4px;
+        }
 
-    .option-btn {
-      background: #ffffffd9;
-      border: 1.5px solid #e4d4ed;
-      padding: 16px 20px;
-      border-radius: 60px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #1f1128;
-      text-align: left;
-      transition: all 0.1s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-      cursor: pointer;
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        .option-btn {
+            background: #ffffffd9;
+            border: 1.5px solid #e4d4ed;
+            padding: 16px 20px;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1f1128;
+            text-align: left;
+            transition: all 0.1s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .option-btn:active {
-      transform: scale(0.98);
-    }
+        .option-btn:active {
+            transform: scale(0.98);
+        }
 
-    .option-btn .letter {
-      background: #eee6f3;
-      border-radius: 40px;
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #4b2a5e;
-      flex-shrink: 0;
-    }
+        .option-btn .letter {
+            background: #eee6f3;
+            border-radius: 40px;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #4b2a5e;
+            flex-shrink: 0;
+        }
 
-    .option-btn.correct {
-      background: #b7e6b7;
-      border-color: #2a7a3b;
-      box-shadow: 0 0 0 2px #2a7a3b55;
-    }
+        .option-btn.correct {
+            background: #b7e6b7;
+            border-color: #2a7a3b;
+            box-shadow: 0 0 0 2px #2a7a3b55;
+        }
 
-    .option-btn.wrong {
-      background: #f9cdcd;
-      border-color: #b13e3e;
-      box-shadow: 0 0 0 2px #b13e3e55;
-    }
+        .option-btn.wrong {
+            background: #f9cdcd;
+            border-color: #b13e3e;
+            box-shadow: 0 0 0 2px #b13e3e55;
+        }
 
-    .option-btn.disabled {
-      pointer-events: none;
-      opacity: 0.7;
-    }
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
 
-    .option-btn.show-correct {
-      background: #b7e6b7;
-      border-color: #2a7a3b;
-    }
+        .option-btn.show-correct {
+            background: #b7e6b7;
+            border-color: #2a7a3b;
+        }
 
-    .explanation-box {
-      background: #f3ebfa;
-      padding: 16px 18px;
-      border-radius: 28px;
-      font-size: 0.98rem;
-      border-left: 4px solid #6d2e8a;
-      color: #1f1128;
-      margin: 4px 0 6px;
-      line-height: 1.5;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
+        .explanation-box {
+            background: #f3ebfa;
+            padding: 16px 18px;
+            border-radius: 28px;
+            font-size: 0.98rem;
+            border-left: 4px solid #6d2e8a;
+            color: #1f1128;
+            margin: 4px 0 6px;
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
 
-    .next-btn {
-      background: #3d1f4b;
-      border: none;
-      color: white;
-      font-weight: 600;
-      font-size: 1.2rem;
-      padding: 16px;
-      border-radius: 60px;
-      width: 100%;
-      transition: 0.2s;
-      box-shadow: 0 8px 16px rgba(61, 31, 75, 0.2);
-      cursor: pointer;
-      margin-top: 6px;
-    }
+        .next-btn {
+            background: #3d1f4b;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 16px;
+            border-radius: 60px;
+            width: 100%;
+            transition: 0.2s;
+            box-shadow: 0 8px 16px rgba(61, 31, 75, 0.2);
+            cursor: pointer;
+            margin-top: 6px;
+        }
 
-    .next-btn:active {
-      transform: scale(0.96);
-    }
+        .next-btn:active {
+            transform: scale(0.96);
+        }
 
-    .next-btn:disabled {
-      opacity: 0.3;
-      pointer-events: none;
-    }
+        .next-btn:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
 
-    /* РЕЗУЛЬТАТ */
-    .result-screen {
-      align-items: center;
-      text-align: center;
-      padding: 10px 0;
-    }
+        /* РЕЗУЛЬТАТ */
+        .result-screen {
+            align-items: center;
+            text-align: center;
+            padding: 10px 0;
+        }
 
-    .result-emoji {
-      font-size: 4.8rem;
-      background: #ffffffdd;
-      padding: 16px 24px;
-      border-radius: 100px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    }
+        .result-emoji {
+            font-size: 4.8rem;
+            background: #ffffffdd;
+            padding: 16px 24px;
+            border-radius: 100px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
 
-    .result-score {
-      font-size: 3.4rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #3b1f4b, #7d3c98);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-    }
+        .result-score {
+            font-size: 3.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b1f4b, #7d3c98);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
 
-    .result-message {
-      background: #f1e6fa;
-      padding: 18px 24px;
-      border-radius: 60px;
-      font-size: 1.2rem;
-      color: #2d1b38;
-      width: 100%;
-    }
+        .result-message {
+            background: #f1e6fa;
+            padding: 18px 24px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            color: #2d1b38;
+            width: 100%;
+        }
 
-    .restart-btn {
-      background: #6d2e8a;
-      border: none;
-      color: white;
-      font-weight: 600;
-      font-size: 1.2rem;
-      padding: 18px;
-      border-radius: 60px;
-      width: 100%;
-      box-shadow: 0 8px 20px rgba(109, 46, 138, 0.3);
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 8px;
-    }
+        .restart-btn {
+            background: #6d2e8a;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 18px;
+            border-radius: 60px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(109, 46, 138, 0.3);
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 8px;
+        }
 
-    .restart-btn:active {
-      transform: scale(0.96);
-    }
+        .restart-btn:active {
+            transform: scale(0.96);
+        }
 
-    .footer-note {
-      font-size: 0.7rem;
-      color: #5d4a69;
-      opacity: 0.7;
-      text-align: center;
-      margin-top: 8px;
-    }
+        .footer-note {
+            font-size: 0.7rem;
+            color: #5d4a69;
+            opacity: 0.7;
+            text-align: center;
+            margin-top: 8px;
+        }
 
-    /* адаптив */
-    @media (max-width: 460px) {
-      .app { padding: 20px 16px 28px; }
-      .question-text { font-size: 1.1rem; padding: 18px 14px; }
-      .option-btn { padding: 14px 16px; font-size: 0.98rem; }
-      .start-screen h1 { font-size: 1.9rem; }
-    }
-  </style>
+        @media (max-width: 460px) {
+            .app { padding: 20px 16px 28px; }
+            .question-text { font-size: 1.1rem; padding: 18px 14px; }
+            .option-btn { padding: 14px 16px; font-size: 0.98rem; }
+            .start-screen h1 { font-size: 1.9rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="app" id="app">
-    <!-- СТАРТОВЫЙ ЭКРАН -->
-    <div class="start-screen" id="startScreen">
-      <div class="start-icon">📖✨</div>
-      <h1>Грамотей-квиз</h1>
-      <p>📚 5–11 класс · 10 вопросов</p>
-      <p style="background:transparent; padding:0; font-size:0.95rem; opacity:0.7;">Проверь себя на перемене!</p>
-      <button class="start-btn" id="startBtn">Начать игру</button>
-      <div style="margin-top:4px; font-size:0.75rem; color:#5d4a69;">Международный день грамотности</div>
+    <div class="app" id="app">
+        <!-- СТАРТОВЫЙ ЭКРАН -->
+        <div class="start-screen" id="startScreen">
+            <div class="start-icon">📖✨</div>
+            <h1>Грамотей-квиз</h1>
+            <p>📚 10 вопросов для всех</p>
+            <p style="background:transparent; padding:0; font-size:0.95rem; opacity:0.7;">Проверь себя на перемене!</p>
+            <button class="start-btn" id="startBtn">Начать игру</button>
+            <div style="margin-top:4px; font-size:0.75rem; color:#5d4a69;">Международный день грамотности</div>
+        </div>
+
+        <!-- ЭКРАН КВИЗА -->
+        <div class="quiz-screen hidden" id="quizScreen">
+            <div class="quiz-header">
+                <span id="questionCounter">Вопрос 1/10</span>
+                <span class="score-badge" id="scoreDisplay">⭐ 0</span>
+            </div>
+
+            <div class="question-text" id="questionText">Загрузка...</div>
+
+            <div class="options-grid" id="optionsContainer"></div>
+
+            <div id="explanationBox" class="explanation-box hidden"></div>
+
+            <button class="next-btn" id="nextBtn" disabled>Далее</button>
+        </div>
+
+        <!-- ЭКРАН РЕЗУЛЬТАТА -->
+        <div class="result-screen hidden" id="resultScreen">
+            <div class="result-emoji" id="resultEmoji">🎓</div>
+            <div class="result-score" id="resultScore">10 / 10</div>
+            <div class="result-message" id="resultMessage">Ты — грамотей!</div>
+            <button class="restart-btn" id="restartBtn">🔄 Пройти снова</button>
+            <div class="footer-note">Международный день распространения грамотности</div>
+        </div>
     </div>
 
-    <!-- ЭКРАН КВИЗА -->
-    <div class="quiz-screen hidden" id="quizScreen">
-      <div class="quiz-header">
-        <span id="questionCounter">Вопрос 1/10</span>
-        <span class="score-badge" id="scoreDisplay">⭐ 0</span>
-      </div>
+    <script>
+        (function() {
+            // ---- ВОПРОСЫ (10) ----
+            // Все вопросы имеют ТОЛЬКО ОДИН правильный ответ
+            const QUESTIONS = [
+                {
+                    question: 'Какой праздник мы отмечаем 8 сентября?',
+                    options: [
+                        'День учителя',
+                        'Международный день грамотности',
+                        'День русского языка',
+                        'День знаний'
+                    ],
+                    correct: 1,
+                    explanation: '8 сентября — Международный день распространения грамотности, учреждённый ЮНЕСКО в 1966 году.'
+                },
+                {
+                    question: 'Какая буква в русском алфавите самая молодая?',
+                    options: ['Ё', 'Й', 'Э', 'Ф'],
+                    correct: 0,
+                    explanation: 'Буква «Ё» официально появилась в 1783 году, её предложила княгиня Екатерина Дашкова.'
+                },
+                {
+                    question: 'В каком слове ударение падает на первый слог?',
+                    options: ['красивый', 'звонит', 'начать', 'понял'],
+                    correct: 3,
+                    explanation: 'Правильно: пОнял. В слове «красИвый» ударение на второй слог, в «звонИт» — на последний, в «начАть» — тоже на последний.'
+                },
+                {
+                    question: 'Что означает фразеологизм «бить баклуши»?',
+                    options: [
+                        'Усердно работать',
+                        'Бездельничать',
+                        'Громко спорить',
+                        'Быстро бежать'
+                    ],
+                    correct: 1,
+                    explanation: '«Бить баклуши» — значит бездельничать, заниматься пустяками. Раньше баклушами называли деревянные заготовки для ложек.'
+                },
+                {
+                    question: 'Выберите правильный вариант написания:',
+                    options: [
+                        'ввиду непогоды',
+                        'в виду непогоды',
+                        'ввиду не погоды',
+                        'в виду не погоды'
+                    ],
+                    correct: 0,
+                    explanation: 'Правильно: «ввиду» (предлог, слитно) — из-за непогоды.'
+                },
+                {
+                    question: 'Какое слово является заимствованным?',
+                    options: ['молоко', 'карандаш', 'хлеб', 'земля'],
+                    correct: 1,
+                    explanation: '«Карандаш» — тюркское заимствование (qara daš — «чёрный камень»).'
+                },
+                {
+                    question: 'Как называется наука о происхождении слов?',
+                    options: ['Фонетика', 'Этимология', 'Лексикология', 'Синтаксис'],
+                    correct: 1,
+                    explanation: 'Этимология — раздел лингвистики, изучающий происхождение слов.'
+                },
+                {
+                    question: 'Какое из этих слов является исключением и пишется с двумя Н?',
+                    options: ['песчаный', 'стеклянный', 'серебряный', 'масляный'],
+                    correct: 1,
+                    explanation: '«Стеклянный» — слово-исключение, пишется с двумя Н. Остальные имеют суффикс -ан-/-ян-, пишутся с одной Н.'
+                },
+                {
+                    question: 'Какое из этих наречий пишется раздельно?',
+                    options: ['(на)век', '(в)догонку', '(в)миг', '(в)обнимку'],
+                    correct: 3,
+                    explanation: '«В обнимку» пишется раздельно, так как это наречие с предлогом «в» и существительным. Остальные пишутся слитно.'
+                },
+                {
+                    question: 'Сколько падежей в русском языке?',
+                    options: ['5', '6', '7', '8'],
+                    correct: 1,
+                    explanation: 'В русском языке 6 падежей: именительный, родительный, дательный, винительный, творительный, предложный.'
+                }
+            ];
 
-      <div class="question-text" id="questionText">Загрузка...</div>
+            // ---- СОСТОЯНИЕ ----
+            let currentIndex = 0;
+            let score = 0;
+            let answered = false;
 
-      <div class="options-grid" id="optionsContainer">
-        <!-- кнопки вариантов генерируются JS -->
-      </div>
+            // DOM элементы
+            const startScreen = document.getElementById('startScreen');
+            const quizScreen = document.getElementById('quizScreen');
+            const resultScreen = document.getElementById('resultScreen');
 
-      <div id="explanationBox" class="explanation-box hidden"></div>
+            const questionCounter = document.getElementById('questionCounter');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const explanationBox = document.getElementById('explanationBox');
+            const nextBtn = document.getElementById('nextBtn');
 
-      <button class="next-btn" id="nextBtn" disabled>Далее</button>
-    </div>
+            const startBtn = document.getElementById('startBtn');
+            const restartBtn = document.getElementById('restartBtn');
 
-    <!-- ЭКРАН РЕЗУЛЬТАТА -->
-    <div class="result-screen hidden" id="resultScreen">
-      <div class="result-emoji" id="resultEmoji">🎓</div>
-      <div class="result-score" id="resultScore">10 / 10</div>
-      <div class="result-message" id="resultMessage">Ты — грамотей!</div>
-      <button class="restart-btn" id="restartBtn">🔄 Пройти снова</button>
-      <div class="footer-note">Международный день распространения грамотности</div>
-    </div>
-  </div>
+            // ---- ПЕРЕМЕШИВАНИЕ ----
+            function shuffleArray(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+                return arr;
+            }
 
-  <script>
-    (function() {
-      // ---- ВОПРОСЫ (10) ----
-      const QUESTIONS = [
-        {
-          question: 'В каком слове ударение падает на последний слог?',
-          options: ['красивый', 'звонит', 'начать', 'понял'],
-          correct: 1, // звонит
-          explanation: 'Верно: звонИт. Ударение на последний слог.'
-        },
-        {
-          question: 'Выберите правильный вариант написания:',
-          options: ['ввиду непогоды', 'в виду непогоды', 'ввиду не погоды', 'в виду не погоды'],
-          correct: 0,
-          explanation: 'Правильно: "ввиду" (предлог, слитно).'
-        },
-        {
-          question: 'Какое слово является заимствованным?',
-          options: ['молоко', 'карандаш', 'хлеб', 'земля'],
-          correct: 1,
-          explanation: '«Карандаш» — тюркское заимствование (qara daš).'
-        },
-        {
-          question: 'В каком ряду все слова пишутся с -Н-?',
-          options: ['песчаный, глиняный', 'стеклянный, деревянный', 'серебряный, оловянный', 'ветреный, масляный'],
-          correct: 0,
-          explanation: 'Песчаный, глиняный — прилагательные с суффиксом -ан- (-ян-), пишутся с одной Н.'
-        },
-        {
-          question: 'Укажите предложение с грамматической ошибкой.',
-          options: ['Обоим студентам дали задание.', 'По приезду в город мы заселились.', 'Согласно расписанию.', 'Благодаря помощи друга.'],
-          correct: 1,
-          explanation: 'Ошибка: "по приезду" — правильно "по приезде" (предложный падеж).'
-        },
-        {
-          question: 'Какое наречие пишется слитно?',
-          options: ['(на)век', '(в)догонку', '(в)миг', '(в)обнимку'],
-          correct: 0,
-          explanation: '«Навек» — слитно, наречие (в значении "навсегда").'
-        },
-        {
-          question: 'Укажите слово с чередующейся гласной в корне.',
-          options: ['замереть', 'замести', 'заметить', 'замолчать'],
-          correct: 0,
-          explanation: '«Замереть» — корень -мер-/-мир- (чередование).'
-        },
-        {
-          question: 'Как правильно: «Он поступил ...»?',
-          options: ['наперекор судьбе', 'на перекор судьбе', 'наперекор судьбы', 'на перекор судьбы'],
-          correct: 0,
-          explanation: 'Предлог "наперекор" управляет дательным падежом (судьбе).'
-        },
-        {
-          question: 'Выберите предложение без речевой ошибки.',
-          options: ['Ихние дети очень способные.', 'Мы оплатили за проезд.', 'Она одела платье.', 'Я вас услышал.'],
-          correct: 3,
-          explanation: '«Я вас услышал» — стилистически верно. Ошибки: ихние (их), оплатить за (оплатить что), одела (надела).'
-        },
-        {
-          question: 'В каком примере НЕ с прилагательным пишется слитно?',
-          options: ['(не)брежный вид', '(не)вежливый, но грубый', '(не)громкий, а тихий', 'вовсе (не)интересный'],
-          correct: 0,
-          explanation: '«Небрежный» — слитно, т.к. без НЕ не употребляется.'
-        }
-      ];
+            // Перемешиваем вопросы, чтобы каждый раз была разная последовательность
+            function prepareQuestions() {
+                const shuffled = [...QUESTIONS];
+                return shuffleArray(shuffled);
+            }
 
-      // ---- СОСТОЯНИЕ ----
-      let currentIndex = 0;
-      let score = 0;
-      let userAnswers = [];   // индексы выбранных ответов (или -1)
-      let answered = false;   // на текущем вопросе уже ответили?
+            let currentQuestions = prepareQuestions();
 
-      // DOM элементы
-      const startScreen = document.getElementById('startScreen');
-      const quizScreen = document.getElementById('quizScreen');
-      const resultScreen = document.getElementById('resultScreen');
+            // ---- ОТРИСОВКА ВОПРОСА ----
+            function renderQuestion(index) {
+                const q = currentQuestions[index];
+                if (!q) return;
 
-      const questionCounter = document.getElementById('questionCounter');
-      const scoreDisplay = document.getElementById('scoreDisplay');
-      const questionText = document.getElementById('questionText');
-      const optionsContainer = document.getElementById('optionsContainer');
-      const explanationBox = document.getElementById('explanationBox');
-      const nextBtn = document.getElementById('nextBtn');
+                answered = false;
+                explanationBox.classList.add('hidden');
+                nextBtn.disabled = true;
 
-      const startBtn = document.getElementById('startBtn');
-      const restartBtn = document.getElementById('restartBtn');
+                questionCounter.textContent = `Вопрос ${index+1}/${currentQuestions.length}`;
+                scoreDisplay.textContent = `⭐ ${score}`;
+                questionText.textContent = q.question;
 
-      // ---- ВСПОМОГАТЕЛЬНЫЕ ----
-      function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-      }
+                optionsContainer.innerHTML = '';
+                const letters = ['А', 'Б', 'В', 'Г'];
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerHTML = `<span class="letter">${letters[idx]}</span> ${opt}`;
+                    btn.dataset.index = idx;
+                    btn.addEventListener('click', () => handleOptionClick(idx));
+                    optionsContainer.appendChild(btn);
+                });
+            }
 
-      // перемешиваем варианты в каждом вопросе (но храним correctIndex)
-      // для этого создадим копию вопросов с перемешанными опциями
-      function prepareQuestions() {
-        return QUESTIONS.map(q => {
-          const optionIndices = q.options.map((_, idx) => idx);
-          const shuffledIndices = shuffleArray([...optionIndices]);
-          const shuffledOptions = shuffledIndices.map(idx => q.options[idx]);
-          // новый correctIndex
-          const newCorrect = shuffledIndices.indexOf(q.correct);
-          return {
-            question: q.question,
-            options: shuffledOptions,
-            correct: newCorrect,
-            explanation: q.explanation
-          };
-        });
-      }
+            // ---- ОБРАБОТКА ВЫБОРА ----
+            function handleOptionClick(selectedIdx) {
+                if (answered) return;
 
-      let currentQuestions = prepareQuestions();
+                const q = currentQuestions[currentIndex];
+                const isCorrect = (selectedIdx === q.correct);
+                if (isCorrect) score += 1;
 
-      // ---- ОТРИСОВКА ВОПРОСА ----
-      function renderQuestion(index) {
-        const q = currentQuestions[index];
-        if (!q) return;
+                scoreDisplay.textContent = `⭐ ${score}`;
 
-        // сброс
-        answered = false;
-        explanationBox.classList.add('hidden');
-        nextBtn.disabled = true;
+                const allBtns = optionsContainer.querySelectorAll('.option-btn');
+                allBtns.forEach((btn, idx) => {
+                    btn.classList.add('disabled');
+                    if (idx === q.correct) btn.classList.add('show-correct');
+                    if (idx === selectedIdx && !isCorrect) btn.classList.add('wrong');
+                    if (idx === selectedIdx && isCorrect) btn.classList.add('correct');
+                });
 
-        // счетчик и очки
-        questionCounter.textContent = `Вопрос ${index+1}/${currentQuestions.length}`;
-        scoreDisplay.textContent = `⭐ ${score}`;
+                explanationBox.textContent = q.explanation;
+                explanationBox.classList.remove('hidden');
 
-        // текст
-        questionText.textContent = q.question;
+                nextBtn.disabled = false;
+                answered = true;
+            }
 
-        // опции
-        optionsContainer.innerHTML = '';
-        const letters = ['А', 'Б', 'В', 'Г'];
-        q.options.forEach((opt, idx) => {
-          const btn = document.createElement('button');
-          btn.className = 'option-btn';
-          btn.innerHTML = `<span class="letter">${letters[idx]}</span> ${opt}`;
-          btn.dataset.index = idx;
-          btn.addEventListener('click', () => handleOptionClick(idx));
-          optionsContainer.appendChild(btn);
-        });
+            // ---- ДАЛЕЕ ----
+            function goToNext() {
+                if (!answered) return;
 
-        // убираем классы disabled / correct/wrong (чистый рендер)
-      }
+                if (currentIndex < currentQuestions.length - 1) {
+                    currentIndex++;
+                    renderQuestion(currentIndex);
+                } else {
+                    showResult();
+                }
+            }
 
-      // ---- ОБРАБОТКА ВЫБОРА ----
-      function handleOptionClick(selectedIdx) {
-        if (answered) return; // уже ответил
+            // ---- РЕЗУЛЬТАТ ----
+            function showResult() {
+                quizScreen.classList.add('hidden');
+                resultScreen.classList.remove('hidden');
 
-        const q = currentQuestions[currentIndex];
-        const isCorrect = (selectedIdx === q.correct);
-        if (isCorrect) score += 1;
+                const maxScore = currentQuestions.length;
+                document.getElementById('resultScore').textContent = `${score} / ${maxScore}`;
 
-        // обновляем счет
-        scoreDisplay.textContent = `⭐ ${score}`;
+                let emoji = '';
+                let message = '';
+                const ratio = score / maxScore;
+                if (ratio === 1) { emoji = '🏆'; message = 'Абсолютная грамотность! Ты — звезда!'; }
+                else if (ratio >= 0.8) { emoji = '📚'; message = 'Отлично! Ты очень грамотный человек!'; }
+                else if (ratio >= 0.6) { emoji = '📝'; message = 'Хорошо! Есть куда расти, но ты молодец!'; }
+                else if (ratio >= 0.4) { emoji = '🤔'; message = 'Неплохо! Почитай правила — будет ещё лучше!'; }
+                else { emoji = '📖'; message = 'Стоит повторить! Но главное — желание учиться!'; }
 
-        // сохраняем ответ
-        userAnswers[currentIndex] = selectedIdx;
+                document.getElementById('resultEmoji').textContent = emoji;
+                document.getElementById('resultMessage').textContent = message;
+            }
 
-        // все кнопки блокируем
-        const allBtns = optionsContainer.querySelectorAll('.option-btn');
-        allBtns.forEach((btn, idx) => {
-          btn.classList.add('disabled');
-          if (idx === q.correct) btn.classList.add('show-correct');
-          if (idx === selectedIdx && !isCorrect) btn.classList.add('wrong');
-          if (idx === selectedIdx && isCorrect) btn.classList.add('correct');
-        });
+            // ---- РЕСТАРТ ----
+            function resetGame() {
+                currentIndex = 0;
+                score = 0;
+                answered = false;
+                currentQuestions = prepareQuestions();
 
-        // показываем объяснение
-        explanationBox.textContent = q.explanation;
-        explanationBox.classList.remove('hidden');
+                resultScreen.classList.add('hidden');
+                startScreen.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
 
-        // включаем кнопку "далее"
-        nextBtn.disabled = false;
-        answered = true;
-      }
+                renderQuestion(0);
+                scoreDisplay.textContent = `⭐ 0`;
+            }
 
-      // ---- ДАЛЕЕ / ЗАВЕРШЕНИЕ ----
-      function goToNext() {
-        if (!answered) return;
+            // ---- СТАРТ ----
+            function startGame() {
+                startScreen.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
+                resetGame();
+            }
 
-        if (currentIndex < currentQuestions.length - 1) {
-          currentIndex++;
-          renderQuestion(currentIndex);
-        } else {
-          // финиш
-          showResult();
-        }
-      }
+            // ---- СОБЫТИЯ ----
+            startBtn.addEventListener('click', startGame);
 
-      // ---- РЕЗУЛЬТАТ ----
-      function showResult() {
-        quizScreen.classList.add('hidden');
-        resultScreen.classList.remove('hidden');
+            restartBtn.addEventListener('click', () => {
+                resultScreen.classList.add('hidden');
+                startScreen.classList.remove('hidden');
+                quizScreen.classList.add('hidden');
+                currentIndex = 0;
+                score = 0;
+                currentQuestions = prepareQuestions();
+            });
 
-        const maxScore = currentQuestions.length;
-        document.getElementById('resultScore').textContent = `${score} / ${maxScore}`;
+            nextBtn.addEventListener('click', goToNext);
 
-        let emoji = '';
-        let message = '';
-        const ratio = score / maxScore;
-        if (ratio === 1) { emoji = '🏆'; message = 'Абсолютная грамотность! Ты — звезда!'; }
-        else if (ratio >= 0.8) { emoji = '📚'; message = 'Отлично! Ты грамотный человек!'; }
-        else if (ratio >= 0.6) { emoji = '📝'; message = 'Хорошо, но есть куда расти!'; }
-        else if (ratio >= 0.4) { emoji = '🤔'; message = 'Неплохо, почитай правила!'; }
-        else { emoji = '📖'; message = 'Стоит повторить орфографию!'; }
-
-        document.getElementById('resultEmoji').textContent = emoji;
-        document.getElementById('resultMessage').textContent = message;
-      }
-
-      // ---- РЕСТАРТ ----
-      function resetGame() {
-        // сброс
-        currentIndex = 0;
-        score = 0;
-        userAnswers = [];
-        answered = false;
-
-        // перемешиваем вопросы заново
-        currentQuestions = prepareQuestions();
-
-        // скрываем результат, показываем квиз
-        resultScreen.classList.add('hidden');
-        startScreen.classList.add('hidden');
-        quizScreen.classList.remove('hidden');
-
-        renderQuestion(0);
-        scoreDisplay.textContent = `⭐ 0`;
-      }
-
-      // ---- НАЧАЛО С СТАРТОВОГО ----
-      function startGame() {
-        startScreen.classList.add('hidden');
-        quizScreen.classList.remove('hidden');
-        resetGame(); // инициализация
-      }
-
-      // ---- СОБЫТИЯ ----
-      startBtn.addEventListener('click', startGame);
-      restartBtn.addEventListener('click', () => {
-        resultScreen.classList.add('hidden');
-        startScreen.classList.remove('hidden');
-        // сбрасываем состояние на стартовый
-        currentIndex = 0;
-        score = 0;
-        userAnswers = [];
-        currentQuestions = prepareQuestions();
-        // прячем квиз, показываем старт
-        quizScreen.classList.add('hidden');
-        startScreen.classList.remove('hidden');
-      });
-
-      nextBtn.addEventListener('click', goToNext);
-
-      // инициализация: стартовый экран виден
-      // но нужно подготовить вопросы при старте.
-      // при старте resetGame отработает.
-      // также подготовим на всякий
-      currentQuestions = prepareQuestions();
-
-      // доп. фикс: если перезагрузка — старт
-      startScreen.classList.remove('hidden');
-      quizScreen.classList.add('hidden');
-      resultScreen.classList.add('hidden');
-    })();
-  </script>
+            // ---- ИНИЦИАЛИЗАЦИЯ ----
+            currentQuestions = prepareQuestions();
+            startScreen.classList.remove('hidden');
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+        })();
+    </script>
 </body>
 </html>
